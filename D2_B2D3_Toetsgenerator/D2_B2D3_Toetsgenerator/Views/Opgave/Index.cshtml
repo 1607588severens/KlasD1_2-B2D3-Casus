@@ -1,0 +1,93 @@
+﻿@model IEnumerable<D2_B2D3_Toetsgenerator.Models.Opgave>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kenniselement.inhoud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inhoud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.antwoorden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.openbaar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.makerID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aanmaakdatum)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.laatstGewijzigDoor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.datumGewijzigd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categorie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isBackup)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kenniselement.inhoud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inhoud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.score)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.antwoorden)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.openbaar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.makerID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aanmaakdatum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.laatstGewijzigDoor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.datumGewijzigd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.categorie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.isBackup)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

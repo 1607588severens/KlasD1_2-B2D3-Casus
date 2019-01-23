@@ -1,0 +1,58 @@
+﻿@model D2_B2D3_Toetsgenerator.Models.Kenniselement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kenniselement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Toetsmatrijs.moduleNaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toetsmatrijs.moduleNaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inhoud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inhoud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aantalReproductie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalReproductie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aantalBegrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalBegrip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aantalToepassing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalToepassing)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

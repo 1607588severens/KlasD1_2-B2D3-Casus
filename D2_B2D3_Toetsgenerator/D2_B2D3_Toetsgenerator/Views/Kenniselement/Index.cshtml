@@ -1,0 +1,57 @@
+﻿@model IEnumerable<D2_B2D3_Toetsgenerator.Models.Kenniselement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Toetsmatrijs.moduleNaam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inhoud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aantalReproductie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aantalBegrip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.aantalToepassing)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Toetsmatrijs.moduleNaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.inhoud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aantalReproductie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aantalBegrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.aantalToepassing)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

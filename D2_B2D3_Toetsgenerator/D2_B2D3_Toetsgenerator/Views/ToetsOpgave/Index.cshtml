@@ -1,0 +1,39 @@
+﻿@model IEnumerable<D2_B2D3_Toetsgenerator.Models.ToetsOpgave>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Opgave.inhoud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Toets.categorie)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Opgave.inhoud)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Toets.categorie)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
