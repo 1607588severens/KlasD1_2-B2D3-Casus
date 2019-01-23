@@ -46,7 +46,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,moduleNaam,moduleCode,makerID,aanmaakdatum,laatstGewijzigdDoor,datumGewijzigd,prestatieIndicator")] Toetsmatrijs toetsmatrijs)
+        public ActionResult Create([Bind(Include = "ID,moduleNaam,moduleCode,makerID,aanmaakdatum,prestatieIndicator,studiejaar,blokperiode")] Toetsmatrijs toetsmatrijs)
         {
             if (ModelState.IsValid)
             {

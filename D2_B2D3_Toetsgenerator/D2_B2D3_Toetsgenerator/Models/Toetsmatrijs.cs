@@ -17,14 +17,17 @@ namespace D2_B2D3_Toetsgenerator.Models
 
         public int ID { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string moduleNaam { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string moduleCode { get; set; }
 
         public int? makerID { get; set; }
 
+        [Required]
         [Column(TypeName = "date")]
         public DateTime? aanmaakdatum { get; set; }
 
@@ -34,6 +37,13 @@ namespace D2_B2D3_Toetsgenerator.Models
         public DateTime? datumGewijzigd { get; set; }
 
         public int? prestatieIndicator { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string studiejaar { get; set; }
+
+        [Required]
+        public int? blokperiode { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kenniselement> Kenniselement { get; set; }
