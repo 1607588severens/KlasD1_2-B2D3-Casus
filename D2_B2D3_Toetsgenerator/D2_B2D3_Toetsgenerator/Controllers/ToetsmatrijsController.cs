@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using D2_B2D3_Toetsgenerator.Models;
+using D2_B2D3_Toetsgenerator.ViewModels;
 
 namespace D2_B2D3_Toetsgenerator.Controllers
 {
@@ -15,9 +16,24 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         private ToetsgeneratorModel db = new ToetsgeneratorModel();
 
         // GET: Toetsmatrijs
-        public ActionResult Index()
+        public ActionResult Index(string moduleCode)
         {
-            return View(db.Toetsmatrijs.ToList());
+            var moduleCodeList = new List<string>();
+
+            var moduleCodeQuery = from d in db.Toetsmatrijs orderby d.moduleCode select d.moduleCode;
+
+            moduleCodeList.AddRange(moduleCodeQuery.Distinct());
+            ViewBag.moduleCode = new SelectList(moduleCodeList);
+
+            var toetsmatrijs = from m in db.Toetsmatrijs select m;
+
+            if (!string.IsNullOrEmpty(moduleCode))
+            {
+                toetsmatrijs = toetsmatrijs.Where(x => x.moduleCode == moduleCode);
+            }
+
+            return View(toetsmatrijs);
+            //return View(db.Toetsmatrijs.ToList());
         }
 
         // GET: Toetsmatrijs/Details/5
@@ -46,8 +62,10 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,moduleNaam,moduleCode,makerID,aanmaakdatum,prestatieIndicator,studiejaar,blokperiode")] Toetsmatrijs toetsmatrijs)
+        public ActionResult Create([Bind(Include = "ID,moduleNaam,moduleCode,makerID,prestatieIndicator,studiejaar,blokperiode")] Toetsmatrijs toetsmatrijs)
         {
+            //Prachtig staaltje C#
+            toetsmatrijs.aanmaakdatum = DateTime.Parse(DateTime.Today.ToString("yyyy-MM-dd"));
             if (ModelState.IsValid)
             {
                 db.Toetsmatrijs.Add(toetsmatrijs);
@@ -78,8 +96,9 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,moduleNaam,moduleCode,makerID,aanmaakdatum,laatstGewijzigdDoor,datumGewijzigd,prestatieIndicator")] Toetsmatrijs toetsmatrijs)
+        public ActionResult Edit([Bind(Include = "ID,moduleNaam,moduleCode,makerID,aanmaakdatum,laatstGewijzigdDoor,prestatieIndicator,studiejaar,blokperiode")] Toetsmatrijs toetsmatrijs)
         {
+            toetsmatrijs.datumGewijzigd = DateTime.Parse(DateTime.Today.ToString("yyyy-MM-dd"));
             if (ModelState.IsValid)
             {
                 db.Entry(toetsmatrijs).State = EntityState.Modified;

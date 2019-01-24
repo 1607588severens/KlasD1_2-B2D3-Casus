@@ -6,10 +6,7 @@
 
 <h2>Toetsmatrijs overzicht</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<row>
+<div>
     <table class="table">
         <tr>
             <th>
@@ -19,11 +16,12 @@
                 @Html.DisplayNameFor(model => model.moduleNaam)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.studiejaar)
+                Studiejaar
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.blokperiode)
+                Blokperiode
             </th>
+            <th></th>
         </tr>
 
         @foreach (var item in Model)
@@ -41,13 +39,25 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.blokperiode)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-                </td>*@
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) @*|
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                </td>
             </tr>
         }
-
     </table>
-</row>
+
+</div>
+<div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+        @using (Html.BeginForm("Index", "toetsmatrijs", FormMethod.Get))
+        {
+        <p>
+            Modeulecode: @Html.DropDownList("moduleCode", "All")
+            <input type="submit" value="Filter" />
+        </p>
+        }
+    </p>
+</div>

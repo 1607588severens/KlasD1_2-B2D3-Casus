@@ -27,13 +27,14 @@ namespace D2_B2D3_Toetsgenerator.Models
 
         public int? makerID { get; set; }
 
-        [Required]
         [Column(TypeName = "date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? aanmaakdatum { get; set; }
 
         public int? laatstGewijzigdDoor { get; set; }
 
         [Column(TypeName = "date")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? datumGewijzigd { get; set; }
 
         public int? prestatieIndicator { get; set; }
