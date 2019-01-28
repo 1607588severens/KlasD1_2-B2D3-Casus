@@ -28,12 +28,35 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Toets toets = db.Toets.Find(id);
+            Toets toets = db.Toets
+                            .Include(t => t.ToetsOpgave)
+                            .Where(x => x.ID == id)
+                            .First();
+
+
             if (toets == null)
             {
                 return HttpNotFound();
             }
             return View(toets);
+        }
+        //Goedkeuren van de toets
+        public ActionResult Goedkeuren(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Toets toets = db.Toets.Find(id);
+            if (toets == null)
+            {
+                return HttpNotFound();
+            }
+            toets.status = "Bevestigd";
+            db.Entry(toets).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details/" + id);
+
         }
 
         // GET: Toets/Create
@@ -48,7 +71,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,makerID,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
+        public ActionResult Create([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,maker,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +105,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,makerID,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
+        public ActionResult Edit([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,maker,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
         {
             if (ModelState.IsValid)
             {
