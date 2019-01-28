@@ -1,0 +1,71 @@
+﻿@model IEnumerable<D2_B2D3_Toetsgenerator.Models.Opgave>
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+
+@if (ViewBag.userMail == "docent@zuyd.nl")
+{
+    <p>
+        @Html.ActionLink("Nieuwe opgave", "Create")
+    </p>
+}
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kenniselement.inhoud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.inhoud)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.score)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.antwoorden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.categorie)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kenniselement.inhoud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.inhoud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.antwoorden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categorie)
+            </td>
+            @if (ViewBag.userMail == "docent@zuyd.nl")
+            {
+                <td>
+                    @Html.ActionLink("Aanpassen", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                    @Html.ActionLink("Verwijderen", "Delete", new { id = item.ID })
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })
+                </td>
+            }
+
+        </tr>
+    }
+
+</table>
