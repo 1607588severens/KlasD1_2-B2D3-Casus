@@ -1,12 +1,11 @@
 ﻿@model D2_B2D3_Toetsgenerator.Models.Opgave
-
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Verwijderen";
 }
 
-<h2>Delete</h2>
+<h2>Verwijderen</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Weet u zeker dat u deze opgave wilt verwijderen?</h3>
 <div>
     <h4>Opgave</h4>
     <hr />
@@ -44,11 +43,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.openbaar)
+            @Html.DisplayTextFor(model => model.openbaar)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.openbaar)
+            @Html.DisplayTextFor(model => model.openbaar)
         </dd>
 
         <dt>
@@ -92,21 +91,22 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.isBackup)
+            @Html.DisplayTextFor(model => model.isBackup)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.isBackup)
+            @Html.DisplayTextFor(model => model.isBackup)
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="Verwijderen" class="btn btn-default" /> |
+            @Html.ActionLink("Terug naar overzicht", "Index")
         </div>
     }
 </div>

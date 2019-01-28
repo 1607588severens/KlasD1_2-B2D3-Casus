@@ -1,5 +1,4 @@
 ﻿@model D2_B2D3_Toetsgenerator.Models.Opgave
-
 @{
     ViewBag.Title = "Details";
 }
@@ -43,11 +42,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.openbaar)
+            @Html.LabelFor(model => model.openbaar)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.openbaar)
+            @Html.DisplayTextFor(model => model.openbaar)
         </dd>
 
         <dt>
@@ -95,12 +94,16 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.isBackup)
+            @Html.DisplayTextFor(model => model.isBackup)
         </dd>
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Terug naar overzicht", "Index")
+    @if (ViewBag.userMail == "docent@zuyd.nl")
+    {
+        @Html.ActionLink(" | Aanpassen", "Edit", new { id = Model.ID })
+    }
 </p>
