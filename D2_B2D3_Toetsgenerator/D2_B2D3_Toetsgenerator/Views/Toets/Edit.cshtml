@@ -84,10 +84,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.makerID, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.maker, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.makerID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.makerID, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.maker, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.maker, "", new { @class = "text-danger" })
             </div>
         </div>
 
