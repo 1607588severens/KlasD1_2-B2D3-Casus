@@ -1,0 +1,64 @@
+﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Kenniselement
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Kenniselement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Toetsmatrijs.moduleNaam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toetsmatrijs.moduleNaam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.inhoud)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inhoud)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aantalReproductie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalReproductie)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aantalBegrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalBegrip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aantalToepassing)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalToepassing)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
