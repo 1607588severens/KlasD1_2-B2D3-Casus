@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using D2_B2D3_Toetsgenerator.Models;
+using Microsoft.AspNet.Identity;
 
 namespace D2_B2D3_Toetsgenerator.Controllers
 {
@@ -14,14 +15,15 @@ namespace D2_B2D3_Toetsgenerator.Controllers
     {
         private ToetsgeneratorModel db = new ToetsgeneratorModel();
 
-        // GET: Opgave
+        // GET: Opgaves
         public ActionResult Index()
         {
-            var opgave = db.Opgave.Include(o => o.Kenniselement);
+            ViewBag.userMail = User.Identity.GetUserName();
+            var opgave = db.Opgave.Include(o => o.Kenniselement).Where(o => o.isBackup == false);
             return View(opgave.ToList());
         }
 
-        // GET: Opgave/Details/5
+        // GET: Opgaves/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -33,17 +35,20 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             {
                 return HttpNotFound();
             }
+            opgave.openbaar.ToString();
+            opgave.isBackup.ToString();
             return View(opgave);
         }
 
-        // GET: Opgave/Create
+        // GET: Opgaves/Create
         public ActionResult Create()
         {
+            ViewBag.userMail = User.Identity.GetUserName();
             ViewBag.elementID = new SelectList(db.Kenniselement, "ID", "inhoud");
             return View();
         }
 
-        // POST: Opgave/Create
+        // POST: Opgaves/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -52,6 +57,8 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         {
             if (ModelState.IsValid)
             {
+                opgave.isBackup = false;
+                opgave.openbaar = false;
                 db.Opgave.Add(opgave);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -61,7 +68,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             return View(opgave);
         }
 
-        // GET: Opgave/Edit/5
+        // GET: Opgaves/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -73,11 +80,12 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.userMail = User.Identity.GetUserName();
             ViewBag.elementID = new SelectList(db.Kenniselement, "ID", "inhoud", opgave.elementID);
             return View(opgave);
         }
 
-        // POST: Opgave/Edit/5
+        // POST: Opgaves/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -94,7 +102,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             return View(opgave);
         }
 
-        // GET: Opgave/Delete/5
+        // GET: Opgaves/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,13 +117,24 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             return View(opgave);
         }
 
-        // POST: Opgave/Delete/5
+        // POST: Opgaves/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Opgave opgave = db.Opgave.Find(id);
+        //    db.Opgave.Remove(opgave);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Opgave opgave = db.Opgave.Find(id);
-            db.Opgave.Remove(opgave);
+            db.Entry(opgave).State = EntityState.Modified;
+            opgave.isBackup = true;
             db.SaveChanges();
             return RedirectToAction("Index");
         }
