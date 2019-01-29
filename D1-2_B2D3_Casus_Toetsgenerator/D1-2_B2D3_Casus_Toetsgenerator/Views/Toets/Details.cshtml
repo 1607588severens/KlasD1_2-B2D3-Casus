@@ -1,13 +1,41 @@
 ﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Toets
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
+    string userMail = User.Identity.GetUserName();
 }
 
 <h2>Details</h2>
 
 <div>
-    <h4>Toets</h4>
+    <h4>Toets @Model.ID</h4>
+    @{
+        if (Model.status == "Bevestigd")
+        {
+            <div class="alert-success" role="alert">
+                Deze toets is goedgekeurt!
+            </div>
+        }
+
+        else
+        {
+            <div class="alert-danger" role="alert">
+                Nog niet goedgekeurt!
+                @{
+                    if (userMail == "toetscommissie@zuyd.nl")
+                    {
+                        @Html.ActionLink("Goedkeuren", "Goedkeuren", new { id = Model.ID })
+                    }
+                }
+
+            </div>
+
+        }
+    }
+
+
+
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -106,17 +134,95 @@
             @Html.DisplayFor(model => model.datumGewijzigd)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.status)
-        </dd>
-
     </dl>
 </div>
+<h2>Opgaven in toets</h2>
+<table class="table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Element
+        </th>
+        <th>
+            Inhoud
+        </th>
+        <th>
+            Score
+        </th>
+        <th>
+            Antwoorden
+        </th>
+        <th>
+            Openbaar
+        </th>
+        <th>
+            Maker
+        <th>
+            Aanmaak datum
+        </th>
+        <th>
+            Laatst gewijzigd door
+        </th>
+        <th>
+            Datum gewijzigd
+        </th>
+        <th>
+            Categorie
+        </th>
+        <th>
+            Is backup
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.ToetsOpgave)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.inhoud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.score)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.antwoorden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.openbaar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.makerID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.aanmaakdatum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.laatstGewijzigDoor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.datumGewijzigd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.categorie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Opgave.isBackup)
+            </td>
+
+        </tr>
+    }
+
+</table>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index") |
+    @Html.ActionLink("Publiceren", "Index")
 </p>

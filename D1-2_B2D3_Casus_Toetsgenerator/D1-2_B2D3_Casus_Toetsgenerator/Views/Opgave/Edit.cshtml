@@ -1,5 +1,4 @@
 ﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Opgave
-
 @{
     ViewBag.Title = "Edit";
 }
@@ -10,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Opgave</h4>
         <hr />
@@ -42,22 +41,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.typeScore, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.typeScore, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.typeScore, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.categorie, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.categorie, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.categorie, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.antwoorden, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.antwoorden, new { htmlAttributes = new { @class = "form-control" } })
@@ -75,7 +58,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.makerID, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.makerID, new { htmlAttributes = new { @class = "form-control" } })
@@ -83,7 +66,7 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display: none;">
             @Html.LabelFor(model => model.aanmaakdatum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.aanmaakdatum, new { htmlAttributes = new { @class = "form-control" } })
@@ -94,7 +77,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.laatstGewijzigDoor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.laatstGewijzigDoor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.laatstGewijzigDoor, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.userMail, @type = "hidden" } })
+                @Html.EditorFor(model => model.laatstGewijzigDoor, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.userMail, @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.laatstGewijzigDoor, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -102,8 +86,17 @@
         <div class="form-group">
             @Html.LabelFor(model => model.datumGewijzigd, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.datumGewijzigd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.datumGewijzigd, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToShortDateString(), @type = "hidden" } })
+                @Html.EditorFor(model => model.datumGewijzigd, new { htmlAttributes = new { @class = "form-control", @Value = DateTime.Now.ToShortDateString(), @disabled = "disabled" } })
                 @Html.ValidationMessageFor(model => model.datumGewijzigd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.categorie, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.categorie, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.categorie, "", new { @class = "text-danger" })
             </div>
         </div>
 

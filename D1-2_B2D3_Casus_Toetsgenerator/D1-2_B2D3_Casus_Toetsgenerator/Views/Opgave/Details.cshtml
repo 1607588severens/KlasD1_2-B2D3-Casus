@@ -1,5 +1,4 @@
 ﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Opgave
-
 @{
     ViewBag.Title = "Details";
 }
@@ -35,22 +34,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.typeScore)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.typeScore)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.categorie)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.categorie)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.antwoorden)
         </dt>
 
@@ -59,11 +42,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.openbaar)
+            @Html.LabelFor(model => model.openbaar)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.openbaar)
+            @Html.DisplayTextFor(model => model.openbaar)
         </dd>
 
         <dt>
@@ -99,16 +82,28 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.categorie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.categorie)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.isBackup)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.isBackup)
+            @Html.DisplayTextFor(model => model.isBackup)
         </dd>
 
     </dl>
 </div>
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Terug naar overzicht", "Index")
+    @if (ViewBag.userMail == "docent@zuyd.nl")
+    {
+        @Html.ActionLink(" | Aanpassen", "Edit", new { id = Model.ID })
+    }
 </p>

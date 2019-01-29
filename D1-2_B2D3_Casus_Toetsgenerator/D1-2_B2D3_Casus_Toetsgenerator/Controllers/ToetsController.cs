@@ -28,12 +28,35 @@ namespace D1_2_B2D3_Casus_Toetsgenerator.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Toets toets = db.Toets.Find(id);
+            Toets toets = db.Toets
+                            .Include(t => t.ToetsOpgave)
+                            .Where(x => x.ID == id)
+                            .First();
+
+
             if (toets == null)
             {
                 return HttpNotFound();
             }
             return View(toets);
+        }
+        //Goedkeuren van de toets
+        public ActionResult Goedkeuren(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Toets toets = db.Toets.Find(id);
+            if (toets == null)
+            {
+                return HttpNotFound();
+            }
+            toets.status = "Bevestigd";
+            db.Entry(toets).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details/" + id);
+
         }
 
         // GET: Toets/Create
