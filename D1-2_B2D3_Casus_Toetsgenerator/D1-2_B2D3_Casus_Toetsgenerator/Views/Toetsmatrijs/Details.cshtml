@@ -1,0 +1,75 @@
+﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Toetsmatrijs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Toetsmatrijs</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Module naam
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moduleNaam)
+        </dd>
+
+        <dt>
+            Module code
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.moduleCode)
+        </dd>
+
+        <dt>
+            Maker ID
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.makerID)
+        </dd>
+
+        <dt>
+            Aanmaak datum
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aanmaakdatum)
+        </dd>
+
+        <dt>
+            Laats gewijzigd door
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.laatstGewijzigdDoor)
+        </dd>
+
+        <dt>
+            Datum gewijzigd
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.datumGewijzigd)
+        </dd>
+
+        <dt>
+            Prestatie Indicator
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prestatieIndicator)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voeg Kennis Element Toe", "Index", "Kenniselement") |
+    @Html.ActionLink("Back to List", "Index")
+</p>

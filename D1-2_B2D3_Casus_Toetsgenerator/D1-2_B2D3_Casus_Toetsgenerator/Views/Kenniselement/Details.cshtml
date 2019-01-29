@@ -1,0 +1,58 @@
+﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Kenniselement
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Kenniselement</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Module naam
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toetsmatrijs.moduleNaam)
+        </dd>
+
+        <dt>
+            Inhoud
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.inhoud)
+        </dd>
+
+        <dt>
+            Aantal reproductie
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalReproductie)
+        </dd>
+
+        <dt>
+            Aantal begrip
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalBegrip)
+        </dd>
+
+        <dt>
+            Aantal toepassing
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aantalToepassing)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

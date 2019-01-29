@@ -1,0 +1,61 @@
+﻿@model IEnumerable<D1_2_B2D3_Casus_Toetsgenerator.Models.Toetsmatrijs>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Toetsmatrijs overzicht</h2>
+
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Module code
+            </th>
+            <th>
+                Module naam
+            </th>
+            <th>
+                Aanmaak datum
+            </th>
+            <th>
+                Datum gewijzigd
+            </th>
+            <th></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.moduleCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.moduleNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aanmaakdatum)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.datumGewijzigd)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.ID }) |*@
+                    @Html.ActionLink("Details", "Details", new { id = item.ID }) @*|
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })*@
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+        @using (Html.BeginForm("Index", "toetsmatrijs", FormMethod.Get))
+        {
+        <p>
+            Modeule code: @Html.DropDownList("moduleCode", "All")
+            <input type="submit" value="Filter" />
+        </p>
+        }
+    </p>
+</div>
