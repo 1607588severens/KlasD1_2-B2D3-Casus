@@ -68,6 +68,13 @@
 
     </dl>
 </div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voeg Kennis Element Toe", "Index", "Kenniselement") |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<br />
+<br />
 <h4>Comment: Spacer voor kenniselement-tabel, onderstaand is een voobeeld van gewenste uitwerking.</h4>
 <div>
     <table class="table">
@@ -109,8 +116,4 @@
         </tr>
     </table>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-    @Html.ActionLink("Voeg Kennis Element Toe", "Index", "Kenniselement") |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
