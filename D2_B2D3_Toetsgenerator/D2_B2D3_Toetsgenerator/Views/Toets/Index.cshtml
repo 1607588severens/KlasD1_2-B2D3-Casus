@@ -1,4 +1,4 @@
-﻿@model IEnumerable<D2_B2D3_Toetsgenerator.Models.Toets>
+﻿@model IEnumerable<D1_2_B2D3_Casus_Toetsgenerator.Models.Toets>
 
 @{
     ViewBag.Title = "Index";
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.examinatoren)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.makerID)
+            @Html.DisplayNameFor(model => model.maker)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.aanmaakDatum)
@@ -80,7 +80,7 @@
             @Html.DisplayFor(modelItem => item.examinatoren)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.makerID)
+            @Html.DisplayFor(modelItem => item.maker)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.aanmaakDatum)
@@ -95,9 +95,11 @@
             @Html.DisplayFor(modelItem => item.status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+            @Html.ActionLink("Toetsblad Converten", "Convert", new { id = item.ID, isAntwoord = false }) |
+            @Html.ActionLink("Antwoordblad Converten", "Convert", new { id = item.ID, isAntwoord = true })
         </td>
     </tr>
 }
