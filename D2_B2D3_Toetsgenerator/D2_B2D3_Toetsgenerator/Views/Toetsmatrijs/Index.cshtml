@@ -1,4 +1,4 @@
-﻿@model IEnumerable<D2_B2D3_Toetsgenerator.Models.Toetsmatrijs>
+﻿@model IEnumerable<D1_2_B2D3_Casus_Toetsgenerator.Models.Toetsmatrijs>
 
 @{
     ViewBag.Title = "Index";
@@ -59,9 +59,10 @@
             @Html.DisplayFor(modelItem => item.prestatieIndicator)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID }) |
+            @Html.ActionLink("Toetsmatrijs", "Convert", new { id = item.ID })
         </td>
     </tr>
 }
