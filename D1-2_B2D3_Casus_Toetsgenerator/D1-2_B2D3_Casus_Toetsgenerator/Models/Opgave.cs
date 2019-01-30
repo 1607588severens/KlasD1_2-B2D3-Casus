@@ -20,30 +20,40 @@ namespace D1_2_B2D3_Casus_Toetsgenerator.Models
         public int elementID { get; set; }
 
         [Required]
+        [Display(Name = "Inhoud")]
         public string inhoud { get; set; }
 
+        [Display(Name = "Score")]
         public int score { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Vraag type")]
         public string typeScore { get; set; }
 
         [Required]
         [StringLength(50)]
+        [Display(Name = "Categorie")]
         public string categorie { get; set; }
 
         [Required]
+        [Display(Name = "Antwoorden")]
         public string antwoorden { get; set; }
 
+        [Display(Name = "Openbaar")]
         public bool openbaar { get; set; }
 
+        [Display(Name = "Aangemaakt door")]
         public string makerID { get; set; }
 
+        [Display(Name = "Aanmaakdatum")]
         [Column(TypeName = "date")]
         public DateTime? aanmaakdatum { get; set; }
 
+        [Display(Name = "Laatst gewijzigd door")]
         public string laatstGewijzigDoor { get; set; }
 
+        [Display(Name = "Laats gewijzigd op")]
         [Column(TypeName = "date")]
         public DateTime? datumGewijzigd { get; set; }
 

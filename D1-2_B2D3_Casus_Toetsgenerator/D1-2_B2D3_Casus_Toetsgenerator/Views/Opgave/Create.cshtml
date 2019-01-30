@@ -1,7 +1,10 @@
 ﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Opgave
-    
 @{
     ViewBag.Title = "Aanmaken";
+    List<SelectListItem> listItems = new List<SelectListItem>();
+    listItems.Add(new SelectListItem { Text = "Reproductie", Value = "Reproductie" });
+    listItems.Add(new SelectListItem { Text = "Begrip", Value = "Begrip" });
+    listItems.Add(new SelectListItem { Text = "Toepassing", Value = "Toepassing" });
 }
 
 <h2>Aanmaken</h2>
@@ -28,6 +31,14 @@
             <div class="col-md-10">
                 @Html.TextAreaFor(model => model.inhoud, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.inhoud, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.typeScore, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.typeScore, listItems, "-- Selecteer --", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.typeScore, "", new { @class = "text-danger" })
             </div>
         </div>
 

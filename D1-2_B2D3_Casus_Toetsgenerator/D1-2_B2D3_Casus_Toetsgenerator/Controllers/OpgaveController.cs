@@ -53,7 +53,7 @@ namespace D1_2_B2D3_Casus_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,elementID,inhoud,score,antwoorden,openbaar,makerID,aanmaakdatum,laatstGewijzigDoor,datumGewijzigd,categorie,isBackup")] Opgave opgave)
+        public ActionResult Create([Bind(Include = "ID,elementID,inhoud,score,antwoorden,openbaar,makerID,aanmaakdatum,laatstGewijzigDoor,datumGewijzigd,categorie,isBackup,typeScore")] Opgave opgave)
         {
             if (ModelState.IsValid)
             {

@@ -1,10 +1,5 @@
 ﻿@model IEnumerable<D1_2_B2D3_Casus_Toetsgenerator.Models.Opgave>
-@{
-    ViewBag.Title = "Index";
-}
-
-
-<h2>Index</h2>
+<h2>Opgaves</h2>
 
 @if (ViewBag.userMail == "docent@zuyd.nl")
 {
@@ -15,7 +10,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Kenniselement.inhoud)
+            Kenniselement
         </th>
         <th>
             @Html.DisplayNameFor(model => model.inhoud)
