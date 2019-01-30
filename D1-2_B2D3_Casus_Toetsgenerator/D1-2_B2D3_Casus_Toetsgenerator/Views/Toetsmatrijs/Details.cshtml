@@ -1,74 +1,101 @@
 ﻿@model D1_2_B2D3_Casus_Toetsgenerator.Models.Toetsmatrijs
-
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
-
 <div>
     <h4>Toetsmatrijs</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.moduleNaam)
+            Module naam
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.moduleNaam)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.moduleCode)
+            Module code
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.moduleCode)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.makerID)
+            Maker ID
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.makerID)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.aanmaakdatum)
+            Aanmaak datum
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.aanmaakdatum)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.laatstGewijzigdDoor)
+            Laats gewijzigd door
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.laatstGewijzigdDoor)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.datumGewijzigd)
+            Datum gewijzigd
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.datumGewijzigd)
         </dd>
-
         <dt>
-            @Html.DisplayNameFor(model => model.prestatieIndicator)
+            Prestatie Indicator
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.prestatieIndicator)
         </dd>
-
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Voeg Kennis Element Toe", "Index", "Kenniselement") |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<br />
+<br />
+<h4>Comment: Spacer voor kenniselement-tabel, onderstaand is een voobeeld van gewenste uitwerking.</h4>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Kenniselement
+            </th>
+            <th>
+                Reproductie punten
+            </th>
+            <th>
+                Begrip punten
+            </th>
+            <th>
+                Toepassing punten
+            </th>
+            <th>
+                Totaal
+            </th>
+            <th>
+                Percentage
+            </th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>3</td>
+            <td>0</td>
+            <td>0</td>
+            <td>3</td>
+            <td>20</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>0</td>
+            <td>6</td>
+            <td>0</td>
+            <td>6</td>
+            <td>40</td>
+        </tr>
+    </table>
+</div>

@@ -10,69 +10,54 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Toetsmatrijs</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.moduleNaam, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Module naam</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.moduleNaam, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.moduleNaam, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.moduleCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Module code</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.moduleCode, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.moduleCode, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.makerID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Maker ID</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.makerID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.makerID, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.makerID, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.aanmaakdatum, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Aanmaak datum</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.aanmaakdatum, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.aanmaakdatum, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.aanmaakdatum, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.laatstGewijzigdDoor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Laatst gewijzigd door</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.laatstGewijzigdDoor, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.laatstGewijzigdDoor, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
-            @Html.LabelFor(model => model.datumGewijzigd, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.datumGewijzigd, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.datumGewijzigd, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.prestatieIndicator, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Prestatie indicator</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.prestatieIndicator, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.prestatieIndicator, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
