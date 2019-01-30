@@ -9,10 +9,10 @@
         @using (Html.BeginForm("Index", "toetsmatrijs", FormMethod.Get))
         {
         <p>
-            Modeule code: @Html.DropDownList("moduleCode", "All")
+            Module code: @Html.DropDownList("moduleCode", "All")
             <input type="submit" value="Filter" />
         </p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Toetsmatrijs aanmaken", "Create")
     }
         </p>
     </div>
