@@ -15,10 +15,26 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         private ToetsgeneratorModel db = new ToetsgeneratorModel();
 
         // GET: Toets
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(string search)
         {
-            var toets = db.Toets.Include(t => t.Toetsmatrijs);
-            return View(toets.ToList());
+            if (search != null)
+            {
+                var toets = db.Toets
+                                .Include(t => t.Toetsmatrijs)
+                                .Where(x => x.categorie == search.ToString());
+                                
+
+
+
+                return View(toets);
+            }
+            else
+            {
+                var toets = db.Toets.Include(t => t.Toetsmatrijs);
+                return View(toets.ToList());
+            }
+            
         }
 
         // GET: Toets/Details/5

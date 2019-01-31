@@ -39,8 +39,8 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // GET: ToetsOpgave/Create
         public ActionResult Create()
         {
-            ViewBag.opgaveID = new SelectList(db.Opgave, "ID", "inhoud");
-            ViewBag.toetsID = new SelectList(db.Toets, "ID", "categorie");
+            ViewBag.opgaveID = new SelectList(db.Opgave, "ID", "ID");
+            ViewBag.toetsID = new SelectList(db.Toets, "ID", "ID");
             return View();
         }
 
