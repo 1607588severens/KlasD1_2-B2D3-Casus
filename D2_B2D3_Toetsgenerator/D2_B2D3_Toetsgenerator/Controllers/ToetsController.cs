@@ -15,14 +15,49 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         private ToetsgeneratorModel db = new ToetsgeneratorModel();
 
         // GET: Toets
-        public ActionResult Index()
+        [HttpGet]
+        public ActionResult Index(string search)
         {
-            var toets = db.Toets.Include(t => t.Toetsmatrijs);
-            return View(toets.ToList());
+            if (search != null)
+            {
+                var toets = db.Toets
+                                .Include(t => t.Toetsmatrijs)
+                                .Where(x => x.categorie == search.ToString());
+                                
+
+
+
+                return View(toets);
+            }
+            else
+            {
+                var toets = db.Toets.Include(t => t.Toetsmatrijs);
+                return View(toets.ToList());
+            }
+            
         }
 
         // GET: Toets/Details/5
         public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Toets toets = db.Toets
+                            .Include(t => t.ToetsOpgave)
+                            .Where(x => x.ID == id)
+                            .First();
+
+
+            if (toets == null)
+            {
+                return HttpNotFound();
+            }
+            return View(toets);
+        }
+        //Goedkeuren van de toets
+        public ActionResult Goedkeuren(int? id)
         {
             if (id == null)
             {
@@ -33,7 +68,11 @@ namespace D2_B2D3_Toetsgenerator.Controllers
             {
                 return HttpNotFound();
             }
-            return View(toets);
+            toets.status = "Bevestigd";
+            db.Entry(toets).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Details/" + id);
+
         }
 
         // GET: Toets/Create
@@ -48,7 +87,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,makerID,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
+        public ActionResult Create([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,maker,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +121,7 @@ namespace D2_B2D3_Toetsgenerator.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,makerID,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
+        public ActionResult Edit([Bind(Include = "ID,matrijsID,categorie,studiejaar,blokperiode,toetsgelegenheid,tijdsduur,schrapformulier,examinatoren,maker,aanmaakDatum,laatstGewijzigdDoor,datumGewijzigd,status")] Toets toets)
         {
             if (ModelState.IsValid)
             {
