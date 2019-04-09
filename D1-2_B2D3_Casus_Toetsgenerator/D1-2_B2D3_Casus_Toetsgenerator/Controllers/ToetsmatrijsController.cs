@@ -223,9 +223,7 @@ namespace D1_2_B2D3_Casus_Toetsgenerator.Controllers
             oSheet.Cells[17, 3].Formula = "=SUM(C9:C16)";
             oSheet.Cells[17, 4].Formula = "=SUM(D9:D16)";
             oSheet.get_Range("B18", "D18").Formula = "=B17 / $E17";
-
-
-
+            
             return RedirectToAction("Index");
         }
 
